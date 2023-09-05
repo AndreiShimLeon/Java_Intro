@@ -2,7 +2,7 @@ class sList{
     Node head;
     class Node {
         int value; // значение узла
-        Node next; // ссылка на следующий узел
+        Node next; // ссылка на следующий узел d
     }
 
     void push_front(int value){ //вставка в начало (самое простое)
