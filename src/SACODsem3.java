@@ -1,5 +1,5 @@
 class sList{
-    Node head;
+    static Node head;
     class Node {
         int value; // значение узла
         Node next; // ссылка на следующий узел d
@@ -53,12 +53,24 @@ class sList{
     void print(){
         Node current = head;
         while(current != null){
-            System.out.println(current.value);
+            System.out.printf("%d ", current.value);;
             current = current.next;
         }
+        System.out.println("");
     }
-
-
+    public void revert(){
+        if(head != null && head.next != null)
+            revert(head.next, head);
+    }
+    private void revert(Node currentNode, Node previousNode){
+        if(currentNode.next == null){
+            head = currentNode;
+        } else{
+        revert(currentNode.next, currentNode);
+        }
+        currentNode.next = previousNode;
+        previousNode.next = null;
+    }
 }
 
 class dList{
@@ -168,23 +180,52 @@ class dList{
             System.out.printf("%d ", current.value);
             current = current.next;
         }
-        System.out.println("");
+        System.out.print("\n");
+    }
+
+    void revert(){
+        Node current = head;
+        while (current != null){
+            Node next = current.next;
+            Node previous = current.previous;
+            current.next = previous;
+            current.previous = next;
+            if(previous == null){
+                tail = current;
+            }
+            if(next == null){
+                head = current;
+            }
+            current = next;
+        }
     }
 }
 public class SACODsem3 {
     public static void main(String[] args) {
-        dList list = new dList();
+        dList dlist = new dList();
         for (int i = 10; i <=15 ; i++) {
-            list.push_front(i);
+            dlist.push_front(i);
         }
         for (int i = 10; i > 5 ; i--) {
-            list.push_front(i);
+            dlist.push_front(i);
         }
 
-        list.print();
-        System.out.println("===============================");
-        list.BubbleSort();
-        list.print();
+        dlist.print();
+        dlist.revert();
+        dlist.print();
+
+//        dList list = new dList();
+//        for (int i = 10; i <=15 ; i++) {
+//            list.push_front(i);
+//        }
+//        for (int i = 10; i > 5 ; i--) {
+//            list.push_front(i);
+//        }
+//
+//        list.print();
+//        System.out.println("===============================");
+//        list.BubbleSort();
+//        list.print();
 
     }
 }
