@@ -77,6 +77,33 @@ public class Seminar4 {
         });
         men.addAll(women);
         men.forEach(n -> System.out.println(Arrays.toString(people.get(n))));
+
+        System.out.println("~*".repeat(16) + "Сортировка по фамилии" + "~*".repeat(16));
+        for (int i = 0; i < people.size(); i++) {
+            ids.set(i,i);
+        }
+        for (int i = 0; i < people.size(); i++) {
+            tempArr[i] = (int) surnames.get(i).toCharArray()[0];
+        }
+        // BubbleSort
+        for (int i = 0; i < ages.size(); i++) {
+            for (int j = 0; j < ages.size() - i - 1; j++) {
+                if (tempArr[j] > tempArr[j + 1]) {
+                    // изменяем временный массив
+                    int temp = tempArr[j];
+                    tempArr[j] = tempArr[j+1];
+                    tempArr[j+1] = temp;
+
+                    //  параллельно изменяем ids
+                    int tempID = ids.get(j);
+                    ids.set(j, ids.get(j+1));
+                    ids.set(j+1, tempID);
+
+                }
+            }
+        }
+
+        ids.forEach(n -> System.out.println(Arrays.toString(people.get(n))));
 //
 //        people.forEach(n -> {
 //            if(n[4].equals("Мужчина")){
