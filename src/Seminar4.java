@@ -69,8 +69,14 @@ public class Seminar4 {
 
 
         System.out.println("~*".repeat(16) + "Сортировка по возрасту и полу" + "~*".repeat(16));
-//        ArrayList<String[]> men = new ArrayList<>();
-//        ArrayList<String[]> women = new ArrayList<>();
+        ArrayList<Integer> men = new ArrayList<>();
+        ArrayList<Integer> women = new ArrayList<>();
+        ids.forEach(n -> {
+            if(sexes.get(n)) men.add(n);
+            else women.add(n);
+        });
+        men.addAll(women);
+        men.forEach(n -> System.out.println(Arrays.toString(people.get(n))));
 //
 //        people.forEach(n -> {
 //            if(n[4].equals("Мужчина")){
